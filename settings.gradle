@@ -4,3 +4,4 @@ rootProject.name = "Hellofresh test"
 include ':domain'
 include ':data'
 include ':presentation'
+include ':ui'
