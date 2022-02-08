@@ -6,6 +6,6 @@ import xyz.zohre.data.model.Recipe
 
 interface RecipeDataSource {
 
-    @GET("https://hf-android-app.s3-eu-west-1.amazonaws.com/android-test/recipes.json")
+    @GET("/android-test/recipes.json")
     suspend fun searchRecipe(): Response<List<Recipe>>
 }

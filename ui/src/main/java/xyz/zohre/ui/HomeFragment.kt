@@ -1,15 +1,20 @@
 package xyz.zohre.ui
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home.*
 import xyz.zohre.presentation.BaseFragment
 import xyz.zohre.presentation.shortToast
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 
 @AndroidEntryPoint
@@ -33,11 +38,13 @@ class HomeFragment : BaseFragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         recipe_recycler.adapter = adapter
         recipe_recycler.itemAnimator = DefaultItemAnimator()
+        currentDate.text = getCurrentDate()
 
         initObservers()
         viewModel.searchProducts()
@@ -48,6 +55,8 @@ class HomeFragment : BaseFragment() {
             viewLifecycleOwner,
             Observer {
                 it?.let { it1 -> adapter.insertItems(it1) }
+                progressbar.visibility = View.GONE
+
             }
         )
         viewModel.showError.observe(
@@ -58,5 +67,11 @@ class HomeFragment : BaseFragment() {
                 }
             }
         )
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun getCurrentDate(): String {
+        val currentDateTime = LocalDateTime.now()
+        return currentDateTime.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
     }
 }

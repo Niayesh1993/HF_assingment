@@ -40,6 +40,7 @@ class RecipeRecyclerAdapter:
         : BaseViewHolder<Recipe>(itemView, adapter){
         override fun bind(t: Recipe) {
             t.name.also { itemView.name.text = it }
+            t.headline.also { itemView.headLine.text = it }
 
             bindImage(
                 imageUrl = t.image,
