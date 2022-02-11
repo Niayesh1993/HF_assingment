@@ -1,7 +1,7 @@
 package xyz.zohre.presentation
 
-import android.content.Context
-import android.widget.Toast
+import android.view.View
+import com.google.android.material.snackbar.Snackbar
 import xyz.zohre.domain.exeption.RemoteCallException
 
 fun Throwable.parseErrorStringRes(): TextData {
@@ -15,9 +15,11 @@ fun Throwable.parseErrorStringRes(): TextData {
     }
 }
 
-fun TextData.shortToast(requireContext: Context) {
+fun TextData.shortToast(view: View) {
     when (this) {
-        is TextData.TextString -> Toast.makeText(requireContext, this.text, Toast.LENGTH_SHORT).show()
-        is TextData.TextStringRes -> Toast.makeText(requireContext, this.resId, Toast.LENGTH_SHORT).show()
+        is TextData.TextString -> Snackbar.make(view, this.text, Snackbar.LENGTH_LONG).show()
+        is TextData.TextStringRes -> Snackbar.make(view, this.resId, Snackbar.LENGTH_LONG).show()
     }
+
+
 }

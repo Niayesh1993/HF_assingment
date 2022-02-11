@@ -26,6 +26,9 @@ class HomeViewModel@Inject constructor(val recipeRepository: RecipeRepository) :
     private val _showError = MutableLiveData<Event<TextData>>()
     val showError: LiveData<Event<TextData>> = _showError
 
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> get() = _loading
+
     fun searchProducts() {
         searchJob?.cancel()
 
@@ -43,6 +46,8 @@ class HomeViewModel@Inject constructor(val recipeRepository: RecipeRepository) :
                 _recipes.value = productsData
             }
             Result.Loading -> {
+                _loading.value = true
+
             }
             is Result.Error -> {
                 recipesDataResults.exception.let {

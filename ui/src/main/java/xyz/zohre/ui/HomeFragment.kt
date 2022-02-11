@@ -59,11 +59,17 @@ class HomeFragment : BaseFragment() {
 
             }
         )
+        viewModel.loading.observe(
+            viewLifecycleOwner,
+            {
+                if (it) progressbar.visibility = View.VISIBLE
+            }
+        )
         viewModel.showError.observe(
             viewLifecycleOwner,
             Observer { event ->
                 event.getContentIfNotHandled()?.let { textData ->
-                    textData.shortToast(requireContext())
+                    textData.shortToast(this.requireView())
                 }
             }
         )

@@ -45,5 +45,8 @@ dependencies {
     api dependenciesList.moshiKotlin
     api dependenciesList.okhttpInterceptor
     implementation project(path: ':domain')
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.7'
+
 
 }
