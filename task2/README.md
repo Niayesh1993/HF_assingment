@@ -1,7 +1,34 @@
 Interview Test App
 ======================
 
+##task1
+In this project we try to Implement Menu of recipes by some restriction
 
+# Design Pattern
+the project implement with strategy pattern
+In Strategy pattern, a class behavior or its algorithm can be changed at run time.
+This type of design pattern comes under behavior pattern.
+In Strategy pattern, we create objects which represent various strategies and
+a context object whose behavior varies as per its strategy object.
+The strategy object changes the executing algorithm of the context object.
+
+# SOLID
+the project implement under SOLID principals
+
+Single-Responsibility Principle: every class and function in project has a certain job to do
+
+Interface Segregation Principle: define a method in interface and implement in any driven class that we want
+
+Dependency Inversion Principle: The principle of dependency inversion refers to the decoupling of software modules.
+This way, instead of high-level modules depending on low-level modules, both will depend on abstractions.
+
+#Unit Test
+Implement some fake data and create test class for MenuContext
+I wrote one test case for each function in class.
+
+
+
+## task2
 ## Prerequisites
 
 In order to run this project you need the following:
